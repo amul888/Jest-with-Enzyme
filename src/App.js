@@ -1,22 +1,29 @@
 import React, { Component } from "react";
 import "./App.css";
-import ClickCounter   from "./clickCounter"
+import ClickCounter from "./clickCounter"
 
-class App extends Component{
-  constructor(props){
+class App extends Component {
+  constructor(props) {
     super(props);
-    this.state ={
-      counter:0
+    this.state = {
+      counter: 0
     }
   }
-  render(){
-    return(
+  render() {
+    const decrementValue = (this.state.counter < 0) ? 0 : this.state.counter - 1;
+    return (
       <div data-test="component-app">
         <h1 data-test="counter-display">The counter is currently {this.state.counter}</h1>
-        <button 
+        {this.state.counter < 0 && <h1 data-test="counter-display">The counter can not go below 0 </h1>}
+
+        <button
           data-test="increment-button"
-          onClick ={()=> this.setState({counter: this.state.counter + 1})}
-          >Increment counter</button>
+          onClick={() => this.setState({ counter: this.state.counter + 1 })}
+        >Increment counter</button>
+        <button
+          data-test="dcrement-button"
+          onClick={() => this.setState({ counter: decrementValue })}
+        >Dcrement counter</button>
       </div>
     );
   }
@@ -28,3 +35,5 @@ export default App;
 <h1> Hello, World! </h1>
 <ClickCounter/>
 </div> */}
+
+
