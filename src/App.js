@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
-import ClickCounter from "./clickCounter"
+import ClickCounter from "./clickCounter";
+import GuessedWords from "./GuessedWords";
+
 
 class App extends Component {
   constructor(props) {
