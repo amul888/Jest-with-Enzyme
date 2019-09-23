@@ -1,6 +1,11 @@
 import CheckPropTypes from "check-prop-types";
-import { exportAllDeclaration } from "@babel/types";
+import { createStore } from "redux";
 
+import rootReducer from "../../src/reducers";
+
+export const storeFactory =(initialState) =>{
+    return createStore(rootReducer,initialState);
+}
 /**
  * 
  * return ShallowWrapper conating node(s) with the given data-test value
