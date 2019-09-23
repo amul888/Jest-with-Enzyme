@@ -46,7 +46,6 @@ describe("render", () => {
         });
         test("does not render input box", () => {
             const inputBox =findByTestAttr(wrapper, "input-box");
-            console.log(inputBox.debug())
             expect(inputBox.length).toBe(1);
         });
         test("does not render submit button", () => {
