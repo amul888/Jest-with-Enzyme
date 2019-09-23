@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import sucessReducer  from "./successReducer";
 
-export default combineReducers({
+ const rootReducer = combineReducers({
     sucessReducer,
 })
+export default rootReducer

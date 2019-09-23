@@ -3,6 +3,7 @@ import "./App.css";
 import ClickCounter from "./clickCounter";
 import GuessedWords from "./GuessedWords";
 import Congrats from "./Congrats";
+import Input from "./Input";
 
 
 class App extends Component {

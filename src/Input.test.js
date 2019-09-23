@@ -10,26 +10,34 @@ const setup = (initialState = {}) => {
     //console.log(wrapper.debug());
     return wrapper;
 }
-setup();
 describe("render", () => {
     describe("word has not been guessed", () => {
-        test("renders componet without error", () => {
+        let wrapper;
+        beforeEach(() => {
+            const initialState = { success: false };
+            //wrapper = setup(initialState); // getting message :Unexpected key "success" found in preloadedState argument passed to createStore. Expected to find one of the known reducer keys instead: "sucessReducer". Unexpected keys will be ignored.
+            wrapper = setup(initialState);
 
+        })
+        test("renders componet without error", () => {
+            const componet =findByTestAttr(wrapper, "component-input");
+            expect(componet.length).toBe(1);
         });
         test("render input box", () => {
-
+            const inputBox =findByTestAttr(wrapper, "input-box");
+            expect(inputBox.length).toBe(1);
         });
-        test("renders submit button ", () => {
-
+        test("render submit button", () => {
+            const submitButton =findByTestAttr(wrapper, "submit-button");
+            expect(submitButton.length).toBe(1);
         });
     });
 
     describe("word has been guessed", () => {
         let wrapper;
         beforeEach(() => {
-            const initialState = { success: false };
-            //wrapper = setup(initialState); // getting message : Unexpected key "success" found in preloadedState argument passed to createStore. Expected to find one of the known reducer keys instead: "sucessReducer". Unexpected keys will be ignored.
-            wrapper = setup();
+            const initialState = { success: true };
+            wrapper = setup(initialState);
 
         })
         test("renders componet without error", () => {
@@ -38,11 +46,12 @@ describe("render", () => {
         });
         test("does not render input box", () => {
             const inputBox =findByTestAttr(wrapper, "input-box");
+            console.log(inputBox.debug())
             expect(inputBox.length).toBe(1);
         });
         test("does not render submit button", () => {
             const submitButton =findByTestAttr(wrapper, "submit-button");
-            expect(submitButton.length).toBe(1);
+            expect(submitButton.length).toEqual(1);
         });
     });
 
