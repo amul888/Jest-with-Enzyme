@@ -46,16 +46,29 @@ describe("render", () => {
         });
         test("does not render input box", () => {
             const inputBox =findByTestAttr(wrapper, "input-box");
-            expect(inputBox.length).toBe(1);
+            expect(inputBox.length).toBe(0);
         });
         test("does not render submit button", () => {
             const submitButton =findByTestAttr(wrapper, "submit-button");
-            expect(submitButton.length).toEqual(1);
+            expect(submitButton.length).toEqual(0);
         });
     });
 
 });
 
+describe('redux props',()=>{
+    test("has success piece of state as props",()=>{
+        const success = true;
+        const wrapper = setup({ success });
+        const sucessProp = wrapper.instance().props.success;
+        expect(sucessProp).toBe(success);
+    });
+    test("`guessWord` action creator is a function prop",()=>{
+        const wrapper= setup();
+        const guessWordProp = wrapper.instance().props.guessWord;
+        expect(guessWordProp).toBeInstanceOf(Function);
+    })
+})
 
 describe("update state", () => {
     // test("renders componet without error", () => {
