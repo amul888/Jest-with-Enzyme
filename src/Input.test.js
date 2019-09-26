@@ -91,7 +91,7 @@ describe ("`guessWord` action creatot call",()=>{
         submitButton.simulate('click',{preventDefault() {} });
          
     })
-    it("calls `guessWord`  when button is clicked",()=>{
+    test("calls `guessWord`  when button is clicked",()=>{
         //check to see if mck ran
         const guessWordCallCount = guessWordMock.mock.calls.length;
          expect(guessWordCallCount).toBe(1);
@@ -99,6 +99,9 @@ describe ("`guessWord` action creatot call",()=>{
     test("call `guessword` with input value as argument",()=>{
         const guessWordArg= guessWordMock.mock.calls[0][0];
         expect(guessWordArg).toBe(guessedWord);
+    });
+    test("input box clears on submit",()=>{
+        expect(wrapper.state('currentGuess')).toBe('');
     })
 })
 describe("update state", () => {
