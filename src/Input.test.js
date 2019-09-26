@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 
 import {findByTestAttr, storeFactory } from "./test/testUtils";
-import Input from "./Input";
+import Input, { UnConnetedInput } from "./Input";
 
 const setup = (initialState = {}) => {
     const store = storeFactory(initialState);
@@ -69,7 +69,25 @@ describe('redux props',()=>{
         expect(guessWordProp).toBeInstanceOf(Function);
     })
 })
+describe ("`guessWord` action creatot call",()=>{
+    test("calls `guessWord`  when button is clicked",()=>{
+        const guessWordMock =jest.fn();
+        const props ={
+            guessWord:guessWordMock
+        }
+         
+        // set up app componet with guessWordMock as the guessWord prop
+        const wrapper = shallow(<UnConnetedInput {...props}/>);
 
+        //simulate clicked
+        const submitButton  = findByTestAttr(wrapper,"submit-button");
+        submitButton.simulate('click');
+        
+        //check to see if mck ran
+        const guessWordCallCount = guessWordMock.mock.calls.length;
+         expect(guessWordCallCount).toBe(1);
+    })
+})
 describe("update state", () => {
     // test("renders componet without error", () => {
 
