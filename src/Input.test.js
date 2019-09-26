@@ -70,22 +70,35 @@ describe('redux props',()=>{
     })
 })
 describe ("`guessWord` action creatot call",()=>{
-    test("calls `guessWord`  when button is clicked",()=>{
-        const guessWordMock =jest.fn();
+    let guessWordMock;
+    let wrapper;
+    const guessedWord ="train";
+
+    beforeEach(()=>{
+        guessWordMock =jest.fn();
         const props ={
             guessWord:guessWordMock
         }
-         
         // set up app componet with guessWordMock as the guessWord prop
-        const wrapper = shallow(<UnConnetedInput {...props}/>);
+        wrapper = shallow(<UnConnetedInput {...props}/>);
 
+
+        // add  value to input box
+        wrapper.setState({currentGuess: guessedWord})
+        
         //simulate clicked
         const submitButton  = findByTestAttr(wrapper,"submit-button");
-        submitButton.simulate('click');
-        
+        submitButton.simulate('click',{preventDefault() {} });
+         
+    })
+    it("calls `guessWord`  when button is clicked",()=>{
         //check to see if mck ran
         const guessWordCallCount = guessWordMock.mock.calls.length;
          expect(guessWordCallCount).toBe(1);
+    });
+    test("call `guessword` with input value as argument",()=>{
+        const guessWordArg= guessWordMock.mock.calls[0][0];
+        expect(guessWordArg).toBe(guessedWord);
     })
 })
 describe("update state", () => {
